@@ -159,7 +159,7 @@
 				}
 			});
 			getJs('../src/js/windowInOutEvent.js','inOut',function(inOut){
-				inOut(_self.$_main,'',function(){
+				var inout = inOut(_self.$_main,'',function(){
 					_self._warpClose();
 				},0,true);
 			});
@@ -326,5 +326,7 @@
 		}
 	}; 
 
-	return Map;
+	return function(coordinate,target,starting){
+		new Map(coordinate,target,starting);
+	};
 });
