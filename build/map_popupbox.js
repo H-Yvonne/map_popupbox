@@ -115,6 +115,11 @@
 				'overflow' : 'hidden'
 			});
 		},
+		_setVisible: function() {
+			$html.css({
+				'overflow': 'visible'
+			});
+		},
 		_setPosition : function(){
 			if(isIe6){
 				var st = $win.scrollTop();
@@ -165,6 +170,7 @@
 			});
 		},
 		_warpClose : function(){
+			this._setVisible();
 			this.$_warp.remove();
 		}
 	});
@@ -175,8 +181,8 @@
 		BMap : '',
 		mainMap : function() {
 			var _self = this;
-			getJs('http://api.map.baidu.com/getscript?v=2.0&ak=3130698f176dbaefabeb924855d7801d&services=&t=20140825185308','BMap',function(BMap){
-				_self.BMap = BMap;
+			getJs('http://api.map.baidu.com/getscript?v=2.0&ak=3130698f176dbaefabeb924855d7801d&services=&t=20140825185308','BMap',function(bmap){
+				_self.BMap = bmap;
 				_self.initMap();
 				_self.addControl();
 				_self.geocoder();
