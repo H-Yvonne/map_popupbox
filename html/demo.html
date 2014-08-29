@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		<link href="../css/index.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="map_layer">
+			<div class="map_bg_layer"></div>
+			<div class="map_main">
+				<div class="map_box">
+					<div class="map_box_left">
+						<span class="mpl_title">交通驾车查询</span>
+						<div class="mpl_bg">
+							<div class="mpl_sel_warp">
+								<ul class="sel_list clearfix">
+									<li class="it">
+										<a href="javascript:;" class="sel_btn active_btn">
+											<span class="map_icon taxi_icon"></span>
+										</a>
+									</li>
+									<li class="it">
+										<a href="javascript:;" class="sel_btn">
+											<span class="map_icon bus_icon"></span>
+										</a>
+									</li>
+									<li class="it">
+										<a href="javascript:;" class="sel_btn">
+											<span class="map_icon people_icon"></span>
+										</a>
+									</li>
+								</ul>
+							</div> 
+							<div class="input_warp">
+								<ul class="input_list clearfix">
+									<li class="it">
+										<span class="map_icon start_icon"></span>
+										<input type="text" class="route_input" />
+									</li>
+									<li class="it">
+										<span class="map_icon end_icon"></span>
+										<input type="text" class="route_input" />
+									</li>
+								</ul>
+							</div>
+							<a href="javascript:;" class="search_btn">查询路线</a>
+						</div>
+						<div class="mpl_route_detail"></div>
+					</div>
+					<div class="map_box_right">
+						<div id="container"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript">
+	var map = new Map();
+</script>
