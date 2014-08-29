@@ -117,7 +117,7 @@
 		},
 		_setVisible: function() {
 			$html.css({
-				'overflow': 'visible'
+				'overflow': 'auto'
 			});
 		},
 		_setPosition : function(){
