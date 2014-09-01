@@ -333,6 +333,9 @@
 			this.setDefault(coordinate,target,starting);
 			this.$_warp.show();
 			this._warpControl();
+			if(this.starting){
+				this.checkRoute();
+			}
 		},
 		hide:function(){
 			this.$_warp.hide();
