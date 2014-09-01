@@ -8,7 +8,7 @@
 		body || (body = $('body'));
 		_this.obj = objarr;
 		_this.inFnc = inFn;
-		_this.outFn = outFn;
+		_this.outfn = outFn;
 		_this.t = t;
 		_this.clearFn = clearFn;
 		setTimeout(function(){
@@ -37,7 +37,7 @@
 				if (sd[0] && sd[1]) {
 					_this.inFn(e, _this.inFnc);
 				} else {
-					_this.outFn(e, _this.outFn, _this.clearFn)
+					_this.outFn(e, _this.outfn, _this.clearFn)
 				}
 				sd = [!1, !1];
 			})
@@ -50,8 +50,9 @@
 		outFn: function(e, fn, clearfn) {
 			if (typeof fn === 'function') {
 				fn(e, this.random);
-				if (clearfn)
+				if (clearfn){
 					body.unbind('click.' + this.random);
+				}
 			}
 		},
 		unbindEvent: function() {

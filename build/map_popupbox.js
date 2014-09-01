@@ -14,15 +14,12 @@
 })(window, $, function(root, $) {
 	var isIe6 = (!!window.ActiveXObject && !window.XMLHttpRequest);
 	var $win = $(window), $html = $('html'), $body = $('body'), winAttr = {};
-
-	var BMapObj=null;
+	var mapObj = null;
 	//initlize function
 	//coordinate array
 	//target 目的地名称
 	var Map = function(coordinate,target,starting) {
-		this.coordinate = coordinate;
-		(!starting)?this.starting = '':this.starting = starting;
-		this.target = target;
+		this.setDefault(coordinate,target,starting);
 		this.init();
 	};
 	$.extend(Map.prototype, {
@@ -32,6 +29,11 @@
 			_self._renderWarp();
 			_self.resizeWH();
 			_self.mainMap();
+		},
+		setDefault : function(coordinate,target,starting){
+			this.coordinate = coordinate;
+			(!starting)?this.starting = '':this.starting = starting;
+			this.target = target;
 		},
 		resizeWH : function(){
 			var _self = this;
@@ -172,7 +174,9 @@
 		},
 		_warpClose : function(){
 			this._setVisible();
-			this.$_warp.remove();
+			$win.unbind('keydown');
+			// this.$_warp.remove();
+			this.hide()
 		}
 	});
 	
@@ -193,7 +197,7 @@
 		//初始化地图	
 		initMap : function(){
 			var _self = this;
-			_self.$_map = (BMapObj ? BMapObj : BMapObj = new _self.BMap.Map(_self.$_mapwarp[0]));
+			_self.$_map = new _self.BMap.Map(_self.$_mapwarp[0]);
 			_self.$_map.centerAndZoom(new _self.BMap.Point(_self.coordinate[0], _self.coordinate[1]), 11);
 		},
 		//增加地图控件
@@ -322,6 +326,19 @@
 		}
 	});
 
+	$.extend(Map.prototype,{
+		show:function(coordinate,target,starting){
+			this.$_warp.find('input[node-type="start"]').val(starting);
+			this.$_warp.find('input[node-type="end"]').val(target);
+			this.setDefault(coordinate,target,starting);
+			this.$_warp.show();
+			this._warpControl();
+		},
+		hide:function(){
+			this.$_warp.hide();
+		}
+	})
+
 	//include javascript files
 	var getJs = function(url, method, fn) {
 		if (root[method]){
@@ -334,7 +351,11 @@
 	}; 
 
 	return function(coordinate,target,starting){
-		new Map(coordinate,target,starting);
+		if(mapObj){
+			mapObj.show(coordinate,target,starting);
+		} else {
+			mapObj = new Map(coordinate,target,starting);
+		}
 	};
 });
 
@@ -348,7 +369,7 @@
 		body || (body = $('body'));
 		_this.obj = objarr;
 		_this.inFnc = inFn;
-		_this.outFn = outFn;
+		_this.outfn = outFn;
 		_this.t = t;
 		_this.clearFn = clearFn;
 		setTimeout(function(){
@@ -377,7 +398,7 @@
 				if (sd[0] && sd[1]) {
 					_this.inFn(e, _this.inFnc);
 				} else {
-					_this.outFn(e, _this.outFn, _this.clearFn)
+					_this.outFn(e, _this.outfn, _this.clearFn)
 				}
 				sd = [!1, !1];
 			})
@@ -390,8 +411,9 @@
 		outFn: function(e, fn, clearfn) {
 			if (typeof fn === 'function') {
 				fn(e, this.random);
-				if (clearfn)
+				if (clearfn){
 					body.unbind('click.' + this.random);
+				}
 			}
 		},
 		unbindEvent: function() {

@@ -8,10 +8,15 @@
 		<link href="../build/css/map_popupbox.min.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
+		<button id="viewMap">ViewMap</button>
 	</body>
 </html>
-<script type="text/javascript" src="../build/map_popupbox.min.js"></script>
+<script type="text/javascript" src="../build/map_popupbox.js"></script>
 <script type="text/javascript">
-	var map = new Map([121.4, 31.114],'五角场');
+	document.getElementById('viewMap').onclick=function (argument) {
+		// body...
+		Map([121.4, 31.114],'五角场');
+	};
+	Map([121.4, 31.114],'五角场');
 </script>
 
