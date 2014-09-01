@@ -15,6 +15,7 @@
 	var isIe6 = (!!window.ActiveXObject && !window.XMLHttpRequest);
 	var $win = $(window), $html = $('html'), $body = $('body'), winAttr = {};
 
+	var BMapObj=null;
 	//initlize function
 	//coordinate array
 	//target 目的地名称
@@ -192,7 +193,7 @@
 		//初始化地图	
 		initMap : function(){
 			var _self = this;
-			_self.$_map = new _self.BMap.Map(_self.$_mapwarp[0]);
+			_self.$_map = (BMapObj ? BMapObj : BMapObj = new _self.BMap.Map(_self.$_mapwarp[0]));
 			_self.$_map.centerAndZoom(new _self.BMap.Point(_self.coordinate[0], _self.coordinate[1]), 11);
 		},
 		//增加地图控件
