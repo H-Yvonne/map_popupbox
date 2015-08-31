@@ -11,12 +11,17 @@ Example
 2. &lt;script type="text/javascript" src="../build/map_popupbox.js"&gt;&lt;/script&gt;
 
 ###2.2 Demo
->Map(coordinate,target,starting);
->>Map([121.4, 31.114],'五角场');
+Map(coordinate,target,starting);
+<pre>
+<code>Map([121.4, 31.114],'五角场');</code>
+</pre>
 
->Parameters:
->>[121.4,31.114]:the city coordinates([longitude,latitude])
+Parameters:
+<pre>
+<code>
+[121.4,31.114]:the city coordinates([longitude,latitude])
+'五角场':the end point
+starting:the start point
+</code>
+</pre>
 
->>'五角场':the end point
-
->>starting:the start point
